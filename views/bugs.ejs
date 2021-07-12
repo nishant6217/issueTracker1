@@ -1,0 +1,79 @@
+<html>
+  <head>
+    <title><%= title%></title>
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="/CSS/style.css" />
+  </head>
+
+  <body>
+    <div id="container">
+      <h1 id="Header"><i class="fas fa-address-book"></i> Bug</h1>
+
+      <% for (let i of bug){ %>
+      <div class="data">
+        <span id="name"><%= i.title%></span>
+        <span id="name1"><%= i.label %></span>
+        <span id="name2"><%= i.descr %></span>
+        <span id="name2"><%= i.author %></span>
+        <!-- <br> -->
+
+        <a id="delete-button" href="delete-contact/?id=<%= i._id%>">
+          <i class="far fa-times-circle"></i>
+        </a>
+      </div>
+      <% } %>
+
+      <!-- Form to Add Data -->
+
+      <form id="form" action="/bug-create/id=<%= project._id%>" method="POST">
+        <input
+          class="input"
+          type="name"
+          name="title"
+          placeholder="Enter Project Name"
+          required
+        />
+        <input
+          class="input"
+          type="text"
+          name="label"
+          placeholder="Enter Project Desc"
+          required
+        />
+        <input
+          class="input"
+          type="text"
+          name="descr"
+          placeholder="Enter Project Author"
+          required
+        />
+        <input
+          class="input"
+          type="text"
+          name="author"
+          placeholder="Enter Project Author"
+          required
+        />
+        <!-- <input
+          class="input"
+          type="hidden"
+          name="of"
+          value="<%= project._id %>"
+        /> -->
+    
+
+      <!-- Form to Add Data -->
+
+      
+
+        <button id="button" type="submit">Add Issue</button>
+      </form>
+    </div>
+  </body>
+</html>

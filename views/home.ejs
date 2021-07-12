@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <title><%= title%></title>
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="/CSS/style.css" />
+  </head>
+
+  <body>
+    <div id="container">
+      <h1 id="Header"><i class="fas fa-address-book"></i> Issue Tracker</h1>
+
+      <% for (let i of project){ %>
+      <div class="data">
+        <span id="name"
+          ><a href="/bug/<%= i._id %>"><%= i.name %></a></span
+        >
+
+        <span id="name1"><%= i.desc %></span>
+        <span id="name2"><%= i.author %></span>
+        <!-- <br> -->
+
+        
+      </div>
+      <% } %>
+
+      <!-- Form to Add Data -->
+
+      <form id="form" action="/create" method="POST">
+        <input
+          class="input"
+          type="name"
+          name="name"
+          placeholder="Enter Project Name"
+          required
+        />
+        <input
+          class="input"
+          type="text"
+          name="desc"
+          placeholder="Enter Project Desc"
+          required
+        />
+        <input
+          class="input"
+          type="text"
+          name="author"
+          placeholder="Enter Project Author"
+          required
+        />
+        <button id="button" type="submit">Add Project</button>
+      </form>
+    </div>
+  </body>
+</html>
