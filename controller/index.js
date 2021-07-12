@@ -3,6 +3,7 @@ const Bug = require("../models/bug");
 
 module.exports.home = async (req, res) => {
   let project = await projectData.find({});
+  console.log("09090909", project);
   if (!project) {
     return res.status(400).json({
       success: false,
@@ -68,4 +69,21 @@ module.exports.bugSeacrh = async (req, res) => {
       title: "SearchPage",
     });
   }
+};
+module.exports.filter = async (req, res) => {
+  let project = await projectData.find({ author: req.body.author });
+  console.log(project);
+  if (!project) {
+    return res.status(400).json({
+      success: false,
+      message: "project doesn't exist",
+    });
+  }
+  if (project) {
+    res.render("home", {
+      title: "Issue Tracker",
+      project: project,
+    });
+  }
+
 };

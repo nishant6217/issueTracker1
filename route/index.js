@@ -9,4 +9,5 @@ router.post("/create", project.create);
 router.get("/bug/:id", project.bug);
 router.post("/bug-create/:id", project.bugCreate);
 router.post("/bug-search", project.bugSeacrh);
+router.post("/filter", project.filter);
 module.exports = router;
