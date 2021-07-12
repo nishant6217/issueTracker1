@@ -27,8 +27,11 @@ module.exports.create = async (req, res) => {
 };
 
 module.exports.bug = async (req, res) => {
-  let project = await projectData.find({});
-  let bug = await projectData.find({}).populate("Bug");
+  let project = await projectData
+    .findOne({ _id: req.params.id })
+    .populate("bug");
+  console.log("---------", project);
+  let bug = project.bug;
   console.log(bug);
   if (bug) {
     res.render("bugs", {
@@ -39,17 +42,30 @@ module.exports.bug = async (req, res) => {
   }
 };
 module.exports.bugCreate = async (req, res) => {
-  let project = projectData.findById(req.params.id);
+  console.log("2222222222222222222222", req.body.of);
+  let project = await projectData.findById(req.body.of);
+  console.log("55555555", project);
 
   let bugi = await Bug.create({
-   
+    of: req.body.of,
     author: req.body.author,
     title: req.body.title,
     descr: req.body.descr,
     label: req.body.label,
   });
-  // project.bug.push(bugi);
-  // project.save();
+  project.bug.push(bugi);
+  project.save();
 
   return res.redirect("back");
+};
+
+module.exports.bugSeacrh = async (req, res) => {
+  console.log(req.body.title);
+  let bugs = await Bug.findOne({ title: req.body.title });
+  if (bugs) {
+    res.render("search", {
+      bugs: bugs,
+      title: "SearchPage",
+    });
+  }
 };

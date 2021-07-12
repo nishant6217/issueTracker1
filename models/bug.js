@@ -18,6 +18,10 @@ const bugSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    of: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "ProjectDb",
+    },
   },
   {
     timestamps: true,

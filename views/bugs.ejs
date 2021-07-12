@@ -13,66 +13,71 @@
 
   <body>
     <div id="container">
-      <h1 id="Header"><i class="fas fa-address-book"></i> Bug</h1>
+      <h1 id="Header"></i> Bug</h1>
 
       <% for (let i of bug){ %>
       <div class="data">
-        <span id="name"><%= i.title%></span>
+        <span id="name"><%= i.title %></span>
         <span id="name1"><%= i.label %></span>
         <span id="name2"><%= i.descr %></span>
-        <span id="name2"><%= i.author %></span>
+        <span id="name3"><%= i.author %></span>
         <!-- <br> -->
-
-        <a id="delete-button" href="delete-contact/?id=<%= i._id%>">
-          <i class="far fa-times-circle"></i>
-        </a>
       </div>
+
       <% } %>
 
       <!-- Form to Add Data -->
 
-      <form id="form" action="/bug-create/id=<%= project._id%>" method="POST">
+      <form id="form" action="/bug-create/id=<%= project.id%>" method="POST">
         <input
           class="input"
           type="name"
           name="title"
-          placeholder="Enter Project Name"
+          placeholder="Enter bug title"
           required
         />
         <input
           class="input"
           type="text"
           name="label"
-          placeholder="Enter Project Desc"
+          placeholder="Enter bug Label"
           required
         />
         <input
           class="input"
           type="text"
           name="descr"
-          placeholder="Enter Project Author"
+          placeholder="Enter bug desc"
           required
         />
         <input
           class="input"
           type="text"
           name="author"
-          placeholder="Enter Project Author"
+          placeholder="Enter bug Author"
           required
         />
-        <!-- <input
-          class="input"
-          type="hidden"
-          name="of"
-          value="<%= project._id %>"
-        /> -->
-    
+        <input type="hidden" name="of" value="<%= project.id %>" />
+        <!-- <%= project %> -->
 
-      <!-- Form to Add Data -->
-
-      
+        <!-- Form to Add Data -->
 
         <button id="button" type="submit">Add Issue</button>
+      </form>
+      <form id="form" action="/bug-search" method="POST">
+        <input
+          class="input"
+          type="name"
+          name="title"
+          placeholder="Enter bug title to find"
+          required
+        />
+
+        <!-- <%= project %> -->
+
+        <!-- Form to Add Data -->
+
+        <button id="button" type="submit">Search</button>
       </form>
     </div>
   </body>
